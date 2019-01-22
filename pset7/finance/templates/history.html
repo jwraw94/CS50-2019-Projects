@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table>
+        <tr>
+            <th>Stock</th>
+            <th>Quantity</th>
+            <th>Type</th>
+            <th>Transaction cost</th>
+            <th>Time</th>
+        </tr>
+        {% for record in history %}
+        <tr>
+            <td>{{ record.symbol }}</td>
+            <td>{{ record.quantity }}</td>
+            <td>{{ record.direction }}</td>
+            <td>{{ (record.transaction_cost) | usd}}</td>
+            <td>{{ record.time }}</td>
+        </tr>
+        {% endfor %}
+        <br>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <table>
+        <tr>
+            <th>Stock</th>
+            <th>Quantity</th>
+            <th>Current price</th>
+            <th>Current Value</th>
+        </tr>
+        {% for symbol in portfolio %}
+        <tr>
+            <td>{{ symbol.symbol }}</td>
+            <td>{{ symbol.total_shares }}</td>
+            <td>{{ current[symbol.symbol]["price"]  | usd }}</td>
+            <td>{{ (current[symbol.symbol]["price"] * symbol.total_shares) | usd }}</td>
+        </tr>
+        {% endfor %}
+        <br>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Total Value:</td>
+            <td> {{ total_value | usd }} </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Current Cash:</td>
+            <td> {{ balance | usd }} </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Total:</td>
+            <td> {{ (balance + total_value) | usd }} </td>
+        </tr>
+    </table>
+{% endblock %}
